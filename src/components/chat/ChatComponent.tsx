@@ -1,10 +1,27 @@
-import React from "react";
+"use client";
+import React, { useContext, useEffect } from "react";
 import { Sidebar } from "./Sidebar";
 import { Messages } from "./Messages";
 import { ChatHeader } from "./ChatHeader";
 import { ChatSelect } from "./ChatSelect";
+import { AuthContext } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 export const ChatComponent = () => {
+  const { verificaToken, auth } = useContext(AuthContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    const verificar = async () => {
+      const resultado = await verificaToken();
+      if (!resultado) {
+        router.replace("/auth/login");
+      }
+    };
+
+    verificar();
+  }, [verificaToken]);
+
   return (
     <>
       {/* <!-- This is an example component --> */}
