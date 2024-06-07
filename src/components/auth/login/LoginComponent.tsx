@@ -69,6 +69,8 @@ export const LoginComponent = () => {
     if (!ok) {
       Swal.fire("Error", "Verifique el usuario y contraseña", "error");
     }
+
+    router.replace("/chat");
   };
 
   const todoOk = () => {

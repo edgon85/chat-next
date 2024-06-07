@@ -18,14 +18,14 @@ export const AuthProvider = ({ children }: Props) => {
   const [auth, setAuth] = useState(initialState);
 
   const login = async (email: string, password: string) => {
-    console.log(email, password);
+    // console.log(email, password);
     const resp = await fetchSinToken("login", { email, password }, "POST");
 
     if (resp.ok) {
       localStorage.setItem("token", resp.token);
       const { user } = resp;
 
-      console.log(user)
+      // console.log(user)
       setAuth({
         uid: user.uid,
         checking: false,
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }: Props) => {
 
   const verificaToken = useCallback(async () => {
     const token = localStorage.getItem("token");
-    console.log({token})
+    // console.log({token})
     // Si token no existe
     if (!token) {
       setAuth({
