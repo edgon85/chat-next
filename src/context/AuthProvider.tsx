@@ -1,6 +1,7 @@
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { fetchConToken, fetchSinToken } from "@/helpers/fetch";
+import { ChatContext } from "./chat/ChatContext";
 
 const initialState = {
   uid: null,
@@ -16,6 +17,7 @@ type Props = {
 
 export const AuthProvider = ({ children }: Props) => {
   const [auth, setAuth] = useState(initialState);
+  const { dispatch } = useContext(ChatContext);
 
   const login = async (email: string, password: string) => {
     // console.log(email, password);
@@ -115,6 +117,7 @@ export const AuthProvider = ({ children }: Props) => {
       name: null,
       email: null,
     });
+    dispatch({ type: "[Chat] - cerrar-sesión" });
   };
 
   return (

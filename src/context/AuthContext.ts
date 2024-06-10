@@ -1,4 +1,4 @@
-import { FC, createContext, useCallback, useState } from "react";
+import { createContext } from "react";
 // import { fetchConToken, fetchSinToken } from '../helpers/fetch';
 
 type ContextProps = {

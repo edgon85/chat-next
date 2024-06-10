@@ -1,4 +1,5 @@
 import { AuthContext } from "@/context/AuthContext";
+import { ChatContext } from "@/context/chat/ChatContext";
 import { useRouter } from "next/navigation";
 
 import { useContext } from "react";

@@ -6,9 +6,11 @@ import { ChatHeader } from "./ChatHeader";
 import { ChatSelect } from "./ChatSelect";
 import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import { ChatContext } from "@/context/chat/ChatContext";
 
 export const ChatComponent = () => {
   const { verificaToken, auth } = useContext(AuthContext);
+  const { state } = useContext(ChatContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -25,7 +27,7 @@ export const ChatComponent = () => {
   return (
     <>
       {/* <!-- This is an example component --> */}
-      <div className="container mx-auto shadow-lg rounded-lg mt-8">
+      <div className="container mx-auto shadow-lg rounded-lg mt-8 min-h-[80vh]">
         {/* <!-- headaer --> */}
         <ChatHeader />
         {/* <!-- end header --> */}
@@ -35,8 +37,7 @@ export const ChatComponent = () => {
           <Sidebar />
           {/* <!-- end chat list --> */}
           {/* <!-- message --> */}
-          {/* <Messages /> */}
-          <ChatSelect />
+          {state.activeChat ? <Messages /> : <ChatSelect />}
           {/* <!-- end message --> */}
         </div>
       </div>
